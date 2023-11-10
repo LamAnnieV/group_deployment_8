@@ -12,7 +12,7 @@ pipeline {
         cd backend
         pip install -r requirements.txt
         pip install mysqlclient
-        pip install pytest
+        pip install _pytest
         py.test --verbose --junit-xml test-reports/results.xml
         '''
      }
