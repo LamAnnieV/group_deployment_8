@@ -6,8 +6,8 @@ pipeline {
       agent {label 'awsDeploy2'}
       steps {
         sh '''#!/bin/bash
-        python3.9 -m venv test3
-        source test3/bin/activate
+        python3.9 -m venv test
+        source test/bin/activate
         pip install pip --upgrade
         cd backend
         pip install -r requirements.txt
