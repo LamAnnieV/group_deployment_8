@@ -13,6 +13,7 @@ pipeline {
         pip install -r requirements.txt
         pip install db.sqlite3
         pip install pytest
+        pip install manage.py
         py.test --verbose --junit-xml test-reports/results.xml
         '''
      }
