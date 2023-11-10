@@ -2,6 +2,18 @@ pipeline {
     agent any
    stages {
 
+    stage ('Test') {
+      steps {
+        sh '''#!/bin/bash
+        python3.9 -m venv test
+        source test/bin/activate
+        pip install pip --upgrade
+        pip install -r requirements.txt
+        pip install mysqlclient
+        pip install pytest
+        py.test --verbose --junit-xml test-reports/results.xml
+        '''
+     }
           
     stage ('Build') {
       agent {label 'awsDeploy2'}
