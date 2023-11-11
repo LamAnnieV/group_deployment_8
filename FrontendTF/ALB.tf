@@ -21,8 +21,13 @@ resource "aws_alb" "ecom_app" {
   load_balancer_type = "application"
 
   subnets = [
-    aws_subnet.public_a.id,
-    aws_subnet.public_b.id,
+   data "aws_subnet" "public_a" {
+  subnet_id = "subnet-01249b7ad6ecbca1b"
+}
+
+data "aws_subnet" "public_b" {
+  subnet_id = "subnet-00a5adc02b96b082f"
+}
   ]
 
   security_groups = [
