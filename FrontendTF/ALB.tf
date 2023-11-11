@@ -1,5 +1,5 @@
 #Target Group
-resource "aws_lb_target_group" "ecom-app" {
+resource "aws_lb_target_group" "ecom-app-FE" {
   name        = "ecom-app"
   port        = 3000
   protocol    = "HTTP"
