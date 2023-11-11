@@ -6,13 +6,13 @@ provider "aws" {
 }
 
 
-#resource "aws_cloudwatch_log_group" "log-group" {
- # name = "/ecs/ecom-logs"
+resource "aws_cloudwatch_log_group" "log-group" {
+  name = "/ecs/ecom-logs"
 
- # tags = {
-  #  Application = "ecom-app-FE"
-  #}
-#}
+  tags = {
+    Application = "ecom-app-FE"
+  }
+}
 
 # Task Definition
 resource "aws_ecs_task_definition" "aws-ecs-task-FE" {
