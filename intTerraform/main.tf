@@ -13,13 +13,16 @@ resource "aws_ecs_cluster" "aws-ecs-cluster" {
   }
 }
 
-resource "aws_cloudwatch_log_group" "log-group" {
-  name = "/ecs/ecom-logs"
 
-  tags = {
-    Application = "ecom-app"
-  }
-}
+################### REMOVE THIS BLOCK THIS the APPLICATION = ALB ############################
+//resource "aws_cloudwatch_log_group" "log-group" {
+//  name = "/ecs/ecom-logs"
+
+//  tags = {
+//    Application = "ecom-app"
+//  }
+//}
+################### REMOVE THIS BLOCK THIS the APPLICATION = ALB ############################
 
 # Task Definition
 resource "aws_ecs_task_definition" "aws-ecs-task" {
