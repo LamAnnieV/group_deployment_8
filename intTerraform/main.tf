@@ -77,7 +77,7 @@ resource "aws_ecs_service" "aws-ecs-service" {
 
     ]
     assign_public_ip = true
-    security_groups  = [aws_security_group.ingress_app.id]
+    security_groups  = [aws_security_group.ingress_app_BE.id]
   }
 
 
