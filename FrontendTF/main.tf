@@ -6,20 +6,17 @@ provider "aws" {
 }
 
 # Cluster
-resource "aws_ecs_cluster" "aws-ecs-cluster" {
-  name = "ecomapp-cluster"
-  tags = {
-    Name = "ecom-ecs"
-  }
+data "aws_ecs_cluster" "existing_ecs_cluster" {
+  cluster_name = "ecomapp-cluster"
 }
 
-resource "aws_cloudwatch_log_group" "log-group" {
-  name = "/ecs/ecom-logs"
+#resource "aws_cloudwatch_log_group" "log-group" {
+ # name = "/ecs/ecom-logs"
 
-  tags = {
-    Application = "ecom-app"
-  }
-}
+ # tags = {
+  #  Application = "ecom-app"
+  #}
+#}
 
 # Task Definition
 resource "aws_ecs_task_definition" "aws-ecs-task" {
