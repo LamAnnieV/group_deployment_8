@@ -19,8 +19,12 @@ output "alb_security_group_id" {
   value = aws_security_group.http.id
 }
 
-output "ingress_security_group_id" {
-  value = aws_security_group.ingress_app.id
+output "ingress_sg_BE_id" {
+  value = aws_security_group.ingress_app_BE.id
+}
+
+output "ingress_sg_FE_id" {
+  value = aws_security_group.ingress_app_FE.id
 }
 
 output "internet_gateway" {
