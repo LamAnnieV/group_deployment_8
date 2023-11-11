@@ -31,10 +31,6 @@ data "aws_security_group" "http" {
   name        = "httpalb"
 }
 
-data "aws_subnet" "public_b" {
-  subnet_id = "subnet-00a5adc02b96b082f"
-}
-
 data "aws_internet_gateway" "igw" {
   gateway_id             = "igw-0a5ab4d510033a156"
 }
