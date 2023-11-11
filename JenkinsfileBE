@@ -3,58 +3,17 @@ pipeline {
    stages {
 
           
-    stage ('Build') {
-      agent {label 'awsDeploy2'}
-      steps {
-          sh 'docker build -f be.Dockerfile -t jmo10/ecommbe .'
+ stage('Destroy') {
+    agent {label 'awsDeploy'}
+    steps {
+          withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'),
+              string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
+                dir('intTerraform') {
+                    sh 'terraform destroy -auto-approve -var="aws_access_key=$aws_access_key" -var="aws_secret_key=$aws_secret_key"'
+                  }
+          }
     }
 }
-
-     stage('Login and Push') {
-      agent {label 'awsDeploy2'}
-        steps {
-          withCredentials([usernamePassword(credentialsId: 'jmo10-dockerhub', usernameVariable: 'DOCKERHUB_CREDENTIALS_USR', passwordVariable: 'DOCKERHUB_CREDENTIALS_PSW')]) {
-              sh "echo \$DOCKERHUB_CREDENTIALS_PSW | docker login -u \$DOCKERHUB_CREDENTIALS_USR --password-stdin"
-              sh 'docker push jmo10/ecommbe'
-              }
-          }
-      }
-
-
-     stage('Init') {
-       agent {label 'awsDeploy'}
-       steps {
-        withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
-                        string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
-                            dir('intTerraform') {
-                              sh 'terraform init' 
-                            }
-         }
-    }
-   }
-      stage('Plan') {
-        agent {label 'awsDeploy'}
-       steps {
-        withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
-                        string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
-                            dir('intTerraform') {
-                              sh 'terraform plan -out plan.tfplan -var="aws_access_key=$aws_access_key" -var="aws_secret_key=$aws_secret_key"' 
-                            }
-         }
-    }
-   }
-      stage('Apply') {
-        agent {label 'awsDeploy'}
-       steps {
-        withCredentials([string(credentialsId: 'AWS_ACCESS_KEY', variable: 'aws_access_key'), 
-                        string(credentialsId: 'AWS_SECRET_KEY', variable: 'aws_secret_key')]) {
-                            dir('intTerraform') {
-                              sh 'terraform apply plan.tfplan' 
-                            }
-         }
-    }
-   }
-
 
   }
 }
