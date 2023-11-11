@@ -26,7 +26,7 @@ data "aws_ecs_cluster" "existing_ecs_cluster" {
  # name = "/ecs/ecom-logs"
 
  # tags = {
-  #  Application = "ecom-app"
+  #  Application = "ecom-app-FE"
   #}
 #}
 
@@ -86,7 +86,7 @@ resource "aws_ecs_service" "aws-ecs-service" {
   }
 
   load_balancer {
-    target_group_arn = aws_lb_target_group.ecom-app.arn
+    target_group_arn = aws_lb_target_group.ecom-app-FE.arn
     container_name   = "ecom-containerF"
     container_port   = 3000
   }
