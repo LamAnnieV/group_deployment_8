@@ -4,7 +4,7 @@ resource "aws_lb_target_group" "ecom-app" {
   port        = 3000
   protocol    = "HTTP"
   target_type = "ip"
-  vpc_id      = aws_vpc.app_vpc.id
+  vpc_id      = aws_vpc.app_vpc.id                            #update with actuals ID
 
   health_check {
     enabled = true
@@ -14,14 +14,6 @@ resource "aws_lb_target_group" "ecom-app" {
   depends_on = [aws_alb.ecom_app]
 }
 
-data "aws_security_group" "http" {
-  name        = "httpalb"
-}
-
-data "aws_internet_gateway" "igw" {
-  gateway_id             = "igw-0a5ab4d510033a156"
-}
-
 #Application Load Balancer
 resource "aws_alb" "ecom_app" {
   name               = "ecom-lb"
@@ -29,15 +21,15 @@ resource "aws_alb" "ecom_app" {
   load_balancer_type = "application"
 
   subnets = [
-    aws_subnet.public_a.id,
-    aws_subnet.public_b.id,
+    aws_subnet.public_a.id,                            #update with actuals ID
+    aws_subnet.public_b.id,                            #update with actuals ID
   ]
 
   security_groups = [
-    aws_security_group.http.id,
+    aws_security_group.http.id,                            #update with actuals ID
   ]
 
-  depends_on = [aws_internet_gateway.igw]
+  depends_on = [aws_internet_gateway.igw]                            #update with actuals ID
 }
 
 resource "aws_alb_listener" "ecom_app_listener" {
