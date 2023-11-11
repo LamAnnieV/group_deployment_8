@@ -29,7 +29,7 @@ resource "aws_alb" "ecom_app" {
     "sg-0b91d06ecfe3579da",                            #update with actuals ID
   ]
 
-  depends_on = "igw-029226251b6b77124"                            #update with actuals ID
+  depends_on = ["igw-029226251b6b77124"]                            #update with actuals ID
 }
 
 resource "aws_alb_listener" "ecom_app_listener" {
