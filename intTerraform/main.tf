@@ -70,7 +70,6 @@ resource "aws_ecs_service" "aws-ecs-service" {
   network_configuration {
     subnets = [
       aws_subnet.public_a.id,
-      aws_subnet.public_b.id
     ]
     assign_public_ip = true
     security_groups  = [aws_security_group.ingress_app.id]
