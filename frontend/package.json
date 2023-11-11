@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy": "http://172.28.1.96:8000",
+  "proxy": "http://172.28.61.228",
   "private": true,
   "dependencies": {
     "@stripe/react-stripe-js": "^1.4.1",
