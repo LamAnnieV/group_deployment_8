@@ -40,7 +40,7 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
       },
       "portMappings": [
         {
-          "containerPort": 3000
+          "containerPort": 8000
         }
       ]
     }
