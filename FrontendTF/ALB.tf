@@ -1,6 +1,6 @@
 #Target Group
 resource "aws_lb_target_group" "ecom-app-FE" {
-  name        = "ecom-app"
+  name        = "ecom-app-FE"
   port        = 3000
   protocol    = "HTTP"
   target_type = "ip"
@@ -39,7 +39,7 @@ resource "aws_alb_listener" "ecom_app_listener" {
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.ecom-app.arn
+    target_group_arn = aws_lb_target_group.ecom-app-FE.arn
   }
 }
 
