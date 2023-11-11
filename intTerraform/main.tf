@@ -83,7 +83,3 @@ resource "aws_ecs_service" "aws-ecs-service" {
 
 }
 
-
-output "ecs_cluster_id" {
-  value = data.aws_ecs_cluster.existing_ecs_cluster.id
-}
