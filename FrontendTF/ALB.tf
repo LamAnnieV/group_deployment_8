@@ -14,6 +14,31 @@ resource "aws_lb_target_group" "ecom-app" {
   depends_on = [aws_alb.ecom_app]
 }
 
+
+data "aws_vpc" "D8-VPC" {
+  vpc_id = "vpc-07b9eeeceeed76834"
+}
+
+data "aws_subnet" "public_a" {
+  subnet_id = "subnet-01249b7ad6ecbca1b"
+}
+
+data "aws_subnet" "public_b" {
+  subnet_id = "subnet-00a5adc02b96b082f"
+}
+
+data "aws_security_group" "http" {
+  name        = "httpalb"
+}
+
+data "aws_subnet" "public_b" {
+  subnet_id = "subnet-00a5adc02b96b082f"
+}
+
+data "aws_internet_gateway" "igw" {
+  gateway_id             = "igw-0a5ab4d510033a156"
+}
+
 #Application Load Balancer
 resource "aws_alb" "ecom_app" {
   name               = "ecom-lb"
@@ -21,12 +46,8 @@ resource "aws_alb" "ecom_app" {
   load_balancer_type = "application"
 
   subnets = [
-   data "aws_subnet" "public_a" {
-  subnet_id = "subnet-01249b7ad6ecbca1b"
-},
-data "aws_subnet" "public_b" {
-  subnet_id = "subnet-00a5adc02b96b082f"
-}
+    aws_subnet.public_a.id,
+    aws_subnet.public_b.id,
   ]
 
   security_groups = [
