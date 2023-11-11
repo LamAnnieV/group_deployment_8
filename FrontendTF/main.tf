@@ -66,7 +66,7 @@ resource "aws_ecs_service" "aws-ecs-service-FE" {
       "subnet-0be4f13b9700414df"                                                        #enter actual ID
     ]
     assign_public_ip = true
-    security_groups  = ["sg-0034ee2ff312e1f8e"]                          #enter actual ID
+    security_groups  = ["sg-0e92788d7f4f1a19f"]                          #enter actual ID
   }
 
   load_balancer {
