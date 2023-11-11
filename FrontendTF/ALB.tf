@@ -14,19 +14,6 @@ resource "aws_lb_target_group" "ecom-app" {
   depends_on = [aws_alb.ecom_app]
 }
 
-
-data "aws_vpc" "D8-VPC" {
-  vpc_id = "vpc-07b9eeeceeed76834"
-}
-
-data "aws_subnet" "public_a" {
-  subnet_id = "subnet-01249b7ad6ecbca1b"
-}
-
-data "aws_subnet" "public_b" {
-  subnet_id = "subnet-00a5adc02b96b082f"
-}
-
 data "aws_security_group" "http" {
   name        = "httpalb"
 }
