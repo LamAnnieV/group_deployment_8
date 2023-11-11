@@ -23,7 +23,7 @@ resource "aws_alb" "ecom_app" {
   subnets = [
    data "aws_subnet" "public_a" {
   subnet_id = "subnet-01249b7ad6ecbca1b"
-}
+},
 
 data "aws_subnet" "public_b" {
   subnet_id = "subnet-00a5adc02b96b082f"
