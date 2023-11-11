@@ -53,7 +53,7 @@ resource "aws_ecs_task_definition" "aws-ecs-task-FE" {
 # ECS Service
 resource "aws_ecs_service" "aws-ecs-service-FE" {
   name                 = "ecom-ecs-service-FE"
-  cluster              = aws_ecs_cluster.aws-ecs-cluster.id                       #enter actual ID
+  cluster              = "arn:aws:ecs:us-east-1:104325197445:cluster/ecomapp-cluster"                       #enter actual ID
   task_definition      = aws_ecs_task_definition.aws-ecs-task-FE.arn
   launch_type          = "FARGATE"
   scheduling_strategy  = "REPLICA"
@@ -62,11 +62,11 @@ resource "aws_ecs_service" "aws-ecs-service-FE" {
 
   network_configuration {
     subnets = [
-      aws_subnet.public_a.id,                                                      #enter actual ID
-      aws_subnet.public_b.id                                                        #enter actual ID
+      "subnet-0297bfe1d4f5960e0",                                                      #enter actual ID
+      "subnet-0be4f13b9700414df"                                                        #enter actual ID
     ]
     assign_public_ip = true
-    security_groups  = [aws_security_group.ingress_app.id]                          #enter actual ID
+    security_groups  = ["sg-0034ee2ff312e1f8e"]                          #enter actual ID
   }
 
   load_balancer {
