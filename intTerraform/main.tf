@@ -28,8 +28,8 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
   container_definitions = <<EOF
   [
   {
-      "name": "ecom-containerF",
-      "image": "jmo10/ecommfe",
+      "name": "ecom-containerbe",
+      "image": "jmo10/ecommbe",
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
@@ -78,7 +78,7 @@ resource "aws_ecs_service" "aws-ecs-service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.ecom-app.arn
-    container_name   = "ecom-containerF"
+    container_name   = "ecom-containerbe"
     container_port   = 3000
   }
 
