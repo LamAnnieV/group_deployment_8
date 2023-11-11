@@ -4,8 +4,8 @@ RUN git clone https://github.com/LamAnnieV/group_deployment_8.git
 
 WORKDIR /group_deployment_8/frontend
 
-RUN nmp install
+RUN npm install
 
 EXPOSE 3000
 
-CMD ["nmp", "start"]
+CMD ["npm", "start"]
