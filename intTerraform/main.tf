@@ -64,22 +64,16 @@ resource "aws_ecs_service" "aws-ecs-service" {
   task_definition      = aws_ecs_task_definition.aws-ecs-task.arn
   launch_type          = "FARGATE"
   scheduling_strategy  = "REPLICA"
-  desired_count        = 2
+  desired_count        = 1
   force_new_deployment = true
 
   network_configuration {
     subnets = [
-      aws_subnet.public_a.id,
-      aws_subnet.public_b.id
+      aws_subnet.public_a.id
     ]
     assign_public_ip = true
     security_groups  = [aws_security_group.ingress_app.id]
   }
 
-  load_balancer {
-    target_group_arn = aws_lb_target_group.ecom-app.arn
-    container_name   = "ecom-containerbe"
-    container_port   = 3000
-  }
 
 }
