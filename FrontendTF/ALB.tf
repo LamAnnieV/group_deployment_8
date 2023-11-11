@@ -8,7 +8,7 @@ resource "aws_lb_target_group" "ecom-app-FE" {
 
   health_check {
     enabled = true
-    path    = "/health"
+    path    = "/"
   }
 
   depends_on = [aws_alb.ecom_app]
