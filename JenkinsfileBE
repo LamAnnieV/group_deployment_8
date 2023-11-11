@@ -42,7 +42,7 @@ pipeline {
                   }
           }
     }
-
+}
 
       stage('Plan') {
         agent {label 'awsDeploy'}
