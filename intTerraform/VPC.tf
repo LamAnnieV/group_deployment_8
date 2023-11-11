@@ -86,6 +86,13 @@ resource "aws_security_group" "ingress_app_FE" {
     protocol    = "TCP"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
 
 resource "aws_security_group" "ingress_app_BE" {
   name        = "ingress-app_BE"
