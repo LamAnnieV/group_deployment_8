@@ -4,7 +4,7 @@ resource "aws_lb_target_group" "ecom-app-FE" {
   port        = 3000
   protocol    = "HTTP"
   target_type = "ip"
-  vpc_id      = "vpc-0275fe41113f0ca69"                            #update with actuals ID
+  vpc_id      = "vpc-0275fe41113f0ca69"                           #update with actual ID
 
   health_check {
     enabled = true
@@ -21,15 +21,15 @@ resource "aws_alb" "ecom_app" {
   load_balancer_type = "application"
 
   subnets = [
-    "subnet-0297bfe1d4f5960e0",                            #update with actuals ID
-    "subnet-0be4f13b9700414df",                            #update with actuals ID
+    "subnet-0297bfe1d4f5960e0",                            #update with actual ID
+    "subnet-0be4f13b9700414df",                            #update with actual ID
   ]
 
   security_groups = [
-    "sg-0b91d06ecfe3579da",                            #update with actuals ID
+    "sg-0b91d06ecfe3579da",                            #update with actual ID
   ]
 
-  #depends_on = ["igw-029226251b6b77124"]                            #update with actuals ID
+  #depends_on = ["igw-029226251b6b77124"]                            #update with actual ID
 }
 
 resource "aws_alb_listener" "ecom_app_listener" {
