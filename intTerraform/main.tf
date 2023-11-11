@@ -69,13 +69,17 @@ resource "aws_ecs_service" "aws-ecs-service" {
 
   network_configuration {
     subnets = [
+
       aws_subnet.public_a.id,
+
     ]
     assign_public_ip = true
     security_groups  = [aws_security_group.ingress_app.id]
   }
 
+
 }
+
 
 output "ecs_cluster_id" {
   value = data.aws_ecs_cluster.existing_ecs_cluster.id

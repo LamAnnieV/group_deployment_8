@@ -19,6 +19,7 @@ pipeline {
           }
       }
 
+
  stage('Init') {
        agent {label 'awsDeploy'}
        steps {
@@ -52,6 +53,7 @@ pipeline {
          }
     }
    }
+
 
   }
 }
