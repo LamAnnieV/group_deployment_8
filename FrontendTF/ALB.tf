@@ -14,6 +14,14 @@ resource "aws_lb_target_group" "ecom-app" {
   depends_on = [aws_alb.ecom_app]
 }
 
+data "aws_security_group" "http" {
+  name        = "httpalb"
+}
+
+data "aws_internet_gateway" "igw" {
+  gateway_id             = "igw-0a5ab4d510033a156"
+}
+
 #Application Load Balancer
 resource "aws_alb" "ecom_app" {
   name               = "ecom-lb"
