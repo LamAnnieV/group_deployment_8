@@ -5,22 +5,6 @@ provider "aws" {
 
 }
 
-data "aws_vpc" "D8-VPC" {
-  vpc_id = "vpc-07b9eeeceeed76834"
-}
-
-data "aws_subnet" "public_a" {
-  subnet_id = "subnet-01249b7ad6ecbca1b"
-}
-
-data "aws_subnet" "public_b" {
-  subnet_id = "subnet-00a5adc02b96b082f"
-}
-
-# Cluster
-data "aws_ecs_cluster" "existing_ecs_cluster" {
-  cluster_name = "ecomapp-cluster"
-}
 
 #resource "aws_cloudwatch_log_group" "log-group" {
  # name = "/ecs/ecom-logs"
@@ -31,13 +15,13 @@ data "aws_ecs_cluster" "existing_ecs_cluster" {
 #}
 
 # Task Definition
-resource "aws_ecs_task_definition" "aws-ecs-task" {
-  family = "ecom-task"
+resource "aws_ecs_task_definition" "aws-ecs-task-FE" {
+  family = "ecom-task-FE"
 
   container_definitions = <<EOF
   [
   {
-      "name": "ecom-containerF",
+      "name": "ecom-containerFE",
       "image": "jmo10/ecommfe",
       "logConfiguration": {
         "logDriver": "awslogs",
@@ -67,10 +51,10 @@ resource "aws_ecs_task_definition" "aws-ecs-task" {
 }
 
 # ECS Service
-resource "aws_ecs_service" "aws-ecs-service" {
-  name                 = "ecom-ecs-service"
-  cluster              = aws_ecs_cluster.aws-ecs-cluster.id
-  task_definition      = aws_ecs_task_definition.aws-ecs-task.arn
+resource "aws_ecs_service" "aws-ecs-service-FE" {
+  name                 = "ecom-ecs-service-FE"
+  cluster              = aws_ecs_cluster.aws-ecs-cluster.id                       #enter actual ID
+  task_definition      = aws_ecs_task_definition.aws-ecs-task-FE.arn
   launch_type          = "FARGATE"
   scheduling_strategy  = "REPLICA"
   desired_count        = 2
@@ -78,16 +62,16 @@ resource "aws_ecs_service" "aws-ecs-service" {
 
   network_configuration {
     subnets = [
-      aws_subnet.public_a.id,
-      aws_subnet.public_b.id
+      aws_subnet.public_a.id,                                                      #enter actual ID
+      aws_subnet.public_b.id                                                        #enter actual ID
     ]
     assign_public_ip = true
-    security_groups  = [aws_security_group.ingress_app.id]
+    security_groups  = [aws_security_group.ingress_app.id]                          #enter actual ID
   }
 
   load_balancer {
     target_group_arn = aws_lb_target_group.ecom-app-FE.arn
-    container_name   = "ecom-containerF"
+    container_name   = "ecom-containerFE"
     container_port   = 3000
   }
 
