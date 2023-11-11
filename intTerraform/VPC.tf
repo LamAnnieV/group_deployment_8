@@ -75,9 +75,9 @@ resource "aws_security_group" "http" {
   }
 }
 
-resource "aws_security_group" "ingress_app" {
-  name        = "ingress-app"
-  description = "Allow ingress to APP"
+resource "aws_security_group" "ingress_app_FE" {
+  name        = "ingress-app_FE"
+  description = "Allow ingress to FE"
   vpc_id      = aws_vpc.app_vpc.id
 
   ingress {
@@ -87,6 +87,11 @@ resource "aws_security_group" "ingress_app" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+resource "aws_security_group" "ingress_app_BE" {
+  name        = "ingress-app_BE"
+  description = "Allow ingress to BE"
+  vpc_id      = aws_vpc.app_vpc.id
+
 ingress {
     from_port   = 8000
     to_port     = 8000
@@ -94,12 +99,6 @@ ingress {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "TCP"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 
   egress {
     from_port   = 0
