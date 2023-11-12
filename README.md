@@ -241,11 +241,13 @@ The application was launched with the DNS:
     
 4.  When running the Jenkins build for the frontend, it was creating resources that already existed.
 
-   Debugging process:  reviewed the frontend dockerfiles, removed resource blocks that were already created, and used the IDs from the backend output blocks and used in the frontend resource blocks to reference existing resources
+     Debugging process:  reviewed the frontend dockerfiles, removed resource blocks that were already created, and used the IDs from the backend output blocks and used in the frontend resource blocks to reference existing resources
 
 5.  Launch Application, but frontend was not connecting to the backend:
-     Debugging process:  reviewed the VPC resource map to verify that the subnet the backend is hosted in is routed to the internet gateway, did research on the internet and ChatGPt, and reviewed terraform files.
-    Resolution:  Moved the creation of ALB resources to be created with the backend resources and uncommented `depends_on = [aws_internet_gateway.igw]`
+
+      Debugging process:  reviewed the VPC resource map to verify that the subnet the backend is hosted in is routed to the internet gateway, did research on the internet and ChatGPt, and reviewed terraform files.
+
+       Resolution:  Moved the creation of ALB resources to be created with the backend resources and uncommented `depends_on = [aws_internet_gateway.igw]`
 
 ## Application Stack
 
