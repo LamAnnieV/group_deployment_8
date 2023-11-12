@@ -223,7 +223,7 @@ Tasks
 
 The application was launched with the DNS:
 
-![Images](Images/Launched_website.png)
+![Images](Images/App_Launched.png)
 
 ## Issue(s)/Debugging/Resolution
 
