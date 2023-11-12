@@ -24,6 +24,8 @@ Since we are working in a group, I had to set up AWS user accounts for my team m
 ## Step  Diagram the VPC Infrastructure and the CI/CD Pipeline (Sameen)
 
 ![Deployment Diagram](Images/Deployment_Pipeline.png)
+![Deployment8 drawio (1)](https://github.com/LamAnnieV/group_deployment_8/assets/128739962/c43a03c9-3135-486c-b0bf-bd2b79719b2b)
+
 
 ## Step 2 GitHub/Git (Annie)
 
