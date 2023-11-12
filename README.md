@@ -40,6 +40,9 @@ With three collaborators on this project, in order to minimize merge conflicts, 
 ## Step # Python Script (Jorge)
 
 ## Step # Docker/Dockerfile  (Jorge)
+# Dockerfile.BE:
+
+For this project, we created a Dockerfile for the backend containers in our ECS cluster. Once the Dockerfile was created and configured for our backend image, I used `docker build` to build the image. Following that, I used `docker image ls` to confirm that the image was successfully built. Upon verification, I used `docker image tag` with the old image ID and the new image name, incorporating my DockerHub username. Once the image was correctly named and built, I pushed it to my DockerHub repository using `docker push`. The backend image used the following configurations:
 
 A Docker image is a template of an application with all the dependencies it needs to run. A docker file has all the components to build the Docker image.
 
