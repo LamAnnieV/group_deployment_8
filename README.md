@@ -42,9 +42,6 @@ A Docker image is a template of an application with all the dependencies it need
 
 For this deployment, we need to create a [dockerfile](dockerfile) to build the image of the e-commerce application.  Please see the [GIT - docker file](Images/git.md) section to see how to test the dockerfile to see if it can build the image and if the image is deployable.
 
-## Step # Jenkinsfilev1  (Annie)
-
-## Step # Jenkinsfilev2  (Annie)
 
 ## Step # Terraform (Sameen)
 
@@ -125,6 +122,13 @@ Instructions on how to install the [Docker Pipeline](https://github.com/LamAnnie
 ### Use Jenkins Terraform Agent to execute the Terraform scripts to create the E-Commerce Application Infrastructure and Deploy the application on ECS with Application Load Balancer (All; Lead: ?)
 
 Jenkins Build:  In Jenkins create a build "deploy_7" to run the file Jenkinsfilev for the E-Commerce application from GitHub Repository []() and run the build.  This build consists of the "Test", the "Docker Build", "Login and Push", (Terraform) "Init", (Terraform) "Plan", and (Terraform) "Apply" stages.  
+
+**Jenkins Build for E-Commerce Application Backend (JenkinsfileBE)**  (Annie)
+
+**Jenkins Build for E-Commerce Application Frontend (JenkinsfileFE)**
+
+## Step # JenkinsfileFE  (Annie)
+
 
 **Results:**
 
