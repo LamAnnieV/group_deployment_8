@@ -8,5 +8,7 @@ EXPOSE 3000
 
 RUN npm install --save-dev @babel/plugin-proposal-private-property-in-object
 
+RUN npm install
+
 CMD ["npm", "start"]
 
