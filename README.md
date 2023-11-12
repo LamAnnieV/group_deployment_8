@@ -138,7 +138,6 @@ aws_alb_listener - defines the configuration for accepting incoming traffic on a
 
 This output block defines an output variable called "alb_url" that provides the URL for the ALB created in the script. This URL is created along with the creation of the application load balancer, and this is how the application is accessed.
 
-```
 
 
 Create the following resource group for [Elastic Container Service](intTerraform/main.tf):
