@@ -1,4 +1,4 @@
-# Title 
+# Deploy E-Commerce Application on ECS Container
 
 November 5, 2023
 
@@ -12,7 +12,7 @@ Jorge Molina - System Administrator
 
 # Purpose
 
-Deploy E-Commerce Application in ECS Container.  Some of the tools used to deploy the application are:
+Deploy E-Commerce Application on ECS Container.  Some of the tools used to deploy the application are:
 ```
 -Jenkins to automate the CI/CD pipeline
 -Terraform was used to automate infrastructure provisioning
