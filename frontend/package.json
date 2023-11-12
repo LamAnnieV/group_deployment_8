@@ -25,7 +25,6 @@
   },
   "scripts": {
     "start": "DANGEROUSLY_DISABLE_HOST_CHECK=true react-scripts start",
-    "build": "DANGEROUSLY_DISABLE_HOST_CHECK=true react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
