@@ -4,7 +4,7 @@ RUN git clone https://github.com/LamAnnieV/group_deployment_8.git
 
 WORKDIR group_deployment_8/frontend
 
-COPY package.json .
+COPY group_deployment_8/frontend/package.json .
 
 EXPOSE 3000
 
