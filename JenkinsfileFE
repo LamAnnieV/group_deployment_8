@@ -6,10 +6,7 @@ pipeline {
     stage ('Build') {
       agent {label 'awsDeploy2'}
       steps {
-        dir('FrontendTF'){
-
           sh 'docker build -f fe.Dockerfile -t jmo10/ecommfe .'
-        }
     }
 }
      stage('Login and Push') {
