@@ -46,11 +46,7 @@ For this project, we created a Dockerfile for the backend containers in our ECS 
 
 # Dockerfile.FE:
 
-For this project, we created a Dockerfile for the frontend containers in our ECS cluster. Similar to the backend setup, after creating and configuring the Dockerfile for our frontend image, I used `docker build` to build the image and `docker image ls` to check its successful creation. After confirming the image build, I utilized `docker image tag` to assign a new name with my DockerHub username included. Subsequently, I pushed the image to my DockerHub repository using `docker push`. The frontend image used the following configurations:
-
-A Docker image is a template of an application with all the dependencies it needs to run. A docker file has all the components to build the Docker image.
-
-For this deployment, we need to create a [dockerfile](dockerfile) to build the image of the e-commerce application.  Please see the [GIT - docker file](Images/git.md) section to see how to test the dockerfile to see if it can build the image and if the image is deployable.
+For this project, we created a Dockerfile for the frontend containers in our ECS cluster. Similar to the backend setup, after creating and configuring the Dockerfile for our frontend image, I used `docker build` to build the image and `docker image ls` to check its successful creation. After confirming the image build, I utilized `docker image tag` to assign a new name with my DockerHub username included. Subsequently, I pushed the image to my DockerHub repository using `docker push`. The frontend image used the following configration:  .
 
 
 ## Step # Terraform (Sameen)
