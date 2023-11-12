@@ -4,7 +4,7 @@ resource "aws_lb_target_group" "ecom-app-FE" {
   port        = 3000
   protocol    = "HTTP"
   target_type = "ip"
-  vpc_id      = "vpc-0275fe41113f0ca69"                           #update with actual ID
+  vpc_id      = aws_vpc.app_vpc.id
 
   health_check {
     enabled = true
