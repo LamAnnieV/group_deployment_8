@@ -110,13 +110,13 @@ Configure Jenkins
 
 Instructions on how to configure the [Jenkin node](https://github.com/LamAnnieV/Jenkins/blob/main/jenkins_node.md)
 
-[images]/(Images/Jenkin_Nodes.png)
+![images]/(Images/Jenkin_Nodes.png)
 
 Instructions on how to configure [AWS access and secret keys](https://github.com/LamAnnieV/Jenkins/blob/main/AWS_Access_Keys), that the Jenkin node will need to execute Terraform scripts
 
 Instructions on how to configure [Docker credentials](https://github.com/LamAnnieV/Jenkins/blob/main/docker_credentials.md), to push the docker image to Docker Hub
 
-[image](Images/Jenkins_Global_Credentials.png)
+![image](Images/Jenkins_Global_Credentials.png)
 
 Instructions on how to install the [Pipleline Keep Running Step](https://github.com/LamAnnieV/Jenkins/blob/main/Install_Pipeline_Keep_Running_Step.md)
 
@@ -143,31 +143,31 @@ Jenkins Build:  In Jenkins create a build "Group_Deploy_8_JenkinsBE" to run the 
 
 **Pass the IP Address of the backend task to the package.json file** - which allows the frontend to proxy into the backend 
 
-[image](Images/Jenkins_BE_Build.png)
+![image](Images/Jenkins_BE_Build.png)
 
-[image](Images/proxy.png)
+![image](Images/proxy.png)
 
 ## Jenkins Build for E-Commerce Application Frontend (JenkinsfileFE)**
 
-The stages for the frontend is the same as the backend, the differences are the dockerfile for the frontend creates the image for the frontend and the terraform files
+The stages for the frontend is the same as the backend, the differences are the dockerfile for the frontend creates the image for the frontend, and the terraform files
 
-[image](Images/Jenkins_FE_Build.png)
+![image](Images/Jenkins_FE_Build.png)
 
 VPC Resource Map
 
-[image](Images/Resource_map.png)
+![image](Images/Resource_map.png)
 
 Cluster
 
-[image](Images/Clusters.png)
+![image](Images/Clusters.png)
 
 Services
 
-[image](Images/Services.png)
+![image](Images/Services.png)
 
 Tasks
 
-[image](Images/Tasks.png)
+![image](Images/Tasks.png)
 
 **Results:**
 
