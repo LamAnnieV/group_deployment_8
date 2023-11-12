@@ -8,7 +8,7 @@ WORKDIR group_deployment_8/frontend
 
 EXPOSE 3000
 
-RUN npm install
+RUN npm install --save-dev @babel/plugin-proposal-private-property-in-object
 
 CMD ["npm", "start"]
 
