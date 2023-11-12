@@ -98,7 +98,7 @@ aws_alb_listener - what port is the application load balancer listening on
 
 ## Step # Jenkins (Annie)
 
-**Jenkins** 
+### Jenkins
 
 Jenkins automates the Build, Test, and Deploy the E-Commerce Application.  To use Jenkins in a new EC2, all the proper installs to use Jenkins and to read the programming language that the application is written in need to be installed. In this case, they are Jenkins, Java, and Jenkins' additional plugin "Pipeline Keep Running Step", which is manually installed through the GUI interface.
 
@@ -110,28 +110,66 @@ Configure Jenkins
 
 Instructions on how to configure the [Jenkin node](https://github.com/LamAnnieV/Jenkins/blob/main/jenkins_node.md)
 
+[images]/(Images/Jenkin_Nodes.png)
+
 Instructions on how to configure [AWS access and secret keys](https://github.com/LamAnnieV/Jenkins/blob/main/AWS_Access_Keys), that the Jenkin node will need to execute Terraform scripts
 
 Instructions on how to configure [Docker credentials](https://github.com/LamAnnieV/Jenkins/blob/main/docker_credentials.md), to push the docker image to Docker Hub
+
+[image](Images/Jenkins_Global_Credentials.png)
 
 Instructions on how to install the [Pipleline Keep Running Step](https://github.com/LamAnnieV/Jenkins/blob/main/Install_Pipeline_Keep_Running_Step.md)
 
 Instructions on how to install the [Docker Pipeline](https://github.com/LamAnnieV/Jenkins/blob/main/Install_Docker_Pipeline_Plugin.md)
 
 
-### Use Jenkins Terraform Agent to execute the Terraform scripts to create the E-Commerce Application Infrastructure and Deploy the application on ECS with Application Load Balancer (All; Lead: ?)
+### Jenkins Build for E-Commerce Backend and Frontend Application
 
-Jenkins Build:  In Jenkins create a build "deploy_7" to run the file Jenkinsfilev for the E-Commerce application from GitHub Repository []() and run the build.  This build consists of the "Test", the "Docker Build", "Login and Push", (Terraform) "Init", (Terraform) "Plan", and (Terraform) "Apply" stages.  
+This application has two tiers, the frontend is the web layer and the backend are application and database layer.  To connect the frontend to the backend, the backend needs to be created first so that the private IP address of the backend task can be passed to the file package.json:
 
-**Jenkins Build for E-Commerce Application Backend (JenkinsfileBE)**  (Annie)
+## Jenkins Build for E-Commerce Application Backend (JenkinsfileBE)**  (Annie)
 
-**Jenkins Build for E-Commerce Application Frontend (JenkinsfileFE)**
+Jenkins Build:  In Jenkins create a build "Group_Deploy_8_JenkinsBE" to run the file JenkinsfileBE for the E-Commerce application from [GitHub Repository](https://github.com/LamAnnieV/group_deployment_8.git) and run the build.  This build consists of the following stages:
 
-## Step # JenkinsfileFE  (Annie)
+**Docker "Build"** - this stage builds the backend image from the be.Dockerfile file
 
+**"Login and Push"** - this stage login Docker Hub with the credentials saved in the Jenkins Global Credentials
+
+**Terraform "Init"** - this stage passes the AWS Access Key and Secret Key from the Jenkins Global Credentials, goes into the directory where the terraform files for the backend are located, then initializes the working directory
+
+**Terraform "Plan"** - this stage in addition to the first and second part of the stage above, also, creates an execution plan
+
+**Terraform "Apply"** - this stage in addition to the first and second part of the stage above, also, executes the actions proposed in a terraform plan
+
+**Pass the IP Address of the backend task to the package.json file** - which allows the frontend to proxy into the backend 
+
+[image](Images/Jenkins_BE_Build.png)
+
+[image](Images/proxy.png)
+
+## Jenkins Build for E-Commerce Application Frontend (JenkinsfileFE)**
+
+The stages for the frontend is the same as the backend, the differences are the dockerfile for the frontend creates the image for the frontend and the terraform files
+
+[image](Images/Jenkins_FE_Build.png)
+
+VPC Resource Map
+
+[image](Images/Resource_map.png)
+
+Cluster
+
+[image](Images/Clusters.png)
+
+Services
+
+[image](Images/Services.png)
+
+Tasks
+
+[image](Images/Tasks.png)
 
 **Results:**
-
 
 ![Image](Images/Jenkins.png)
 
