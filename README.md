@@ -43,8 +43,7 @@ A Jira Board was created to list last, assign tasks, and track progress
 
 ## Step 2: Diagram the VPC Infrastructure and the CI/CD Pipeline
 
-![Deployment8 drawio (1)](https://github.com/LamAnnieV/group_deployment_8/assets/128739962/c43a03c9-3135-486c-b0bf-bd2b79719b2b)
-
+![Deployment8 drawio (2)](https://github.com/LamAnnieV/group_deployment_8/assets/128739962/74075ac9-1797-45b6-b4c8-bb9f8e745f20)
 
 ## Step 3: GitHub/Git
 
