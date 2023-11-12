@@ -131,7 +131,6 @@ This application has two tiers, the frontend is the web layer and the backend ar
 
 Jenkins Build:  In Jenkins create a build "Group_Deploy_8_JenkinsBE" to run the file JenkinsfileBE for the E-Commerce application from [GitHub Repository](https://github.com/LamAnnieV/group_deployment_8.git) and run the build.  This build consists of the following stages:
 
-```
 Docker "Build" - this stage builds the backend image from the be.Dockerfile file
 
 "Login and Push" - this stage login Docker Hub with the credentials saved in the Jenkins Global Credentials
