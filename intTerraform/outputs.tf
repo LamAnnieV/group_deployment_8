@@ -27,6 +27,9 @@ output "ingress_sg_FE_id" {
   value = aws_security_group.ingress_app_FE.id
 }
 
+output "aws_lb_target_group.ecom-app-FE.arn" {
+  value = aws_lb_target_group.ecom-app-FE.arn
+
 output "internet_gateway" {
   value = aws_internet_gateway.igw.id
 }
