@@ -141,13 +141,13 @@ Jenkins Build:  In Jenkins create a build "Group_Deploy_8_JenkinsBE" to run the 
 
 **Terraform "Apply"** - this stage in addition to the first and second part of the stage above, also, executes the actions proposed in a terraform plan
 
-**Pass the IP Address of the backend task to the package.json file** - which allows the frontend to proxy into the backend 
-
 ![image](Images/Jenkins_BE_Build.png)
+
+**Pass the IP Address of the backend task to the package.json file** - which allows the frontend to proxy into the backend 
 
 ![image](Images/proxy.png)
 
-## Jenkins Build for E-Commerce Application Frontend (JenkinsfileFE)**
+## Jenkins Build for E-Commerce Application Frontend (JenkinsfileFE)
 
 The stages for the frontend is the same as the backend, the differences are the dockerfile for the frontend creates the image for the frontend, and the terraform files
 
