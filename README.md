@@ -17,6 +17,9 @@ Jorge Molina - System Administrator
 Deploy E-Commerce Application in ECS Container 
 
 ## Step  AWS Setup (Jorge)
+# AWS Setup
+
+Since we are working in a group, I had to set up AWS user accounts for my team members to collaborate on the same servers. I created two user accounts, copying the same permissions from myself. This allows my team members to create and access EC2 instances.
 
 ## Step  Diagram the VPC Infrastructure and the CI/CD Pipeline (Sameen)
 
