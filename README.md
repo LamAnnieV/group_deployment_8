@@ -162,7 +162,7 @@ Configure Jenkins
 
 Instructions on how to configure the [Jenkin node](https://github.com/LamAnnieV/Jenkins/blob/main/jenkins_node.md)
 
-![images]/(Images/Jenkin_Nodes.png)
+![images](Images/Jenkin_Nodes.png)
 
 Instructions on how to configure [AWS access and secret keys](https://github.com/LamAnnieV/Jenkins/blob/main/AWS_Access_Keys), that the Jenkin node will need to execute Terraform scripts
 
