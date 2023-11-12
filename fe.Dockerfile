@@ -2,7 +2,7 @@ FROM node:10
 
 RUN git clone https://github.com/LamAnnieV/group_deployment_8.git
 
-WORKDIR /group_deployment_8/frontend
+WORKDIR group_deployment_8/frontend
 
 COPY package.json .
 
