@@ -135,16 +135,16 @@ aws_alb" "e_commerce_app - configures an Application Load Balancer (ALB) on AWS.
 aws_alb_listener - defines the configuration for accepting incoming traffic on a specific port and protocol. It is responsible for "forwarding" this traffic to the designated target group. 
 
 
-T**Terraform file to create the resources for backend ECS:   [main.tf](intTerraform/main.tf)**
+**Terraform files to create the resources for backend ECS:   [main.tf](intTerraform/main.tf) and [ALB.tf](intTerraform/ALB.tf)**
 
 **Output Block:**
 
 With the resources created for the backend from [vpc.tf](intTerraform/VPC.tf) and [main.tf](intTerraform/main.tf) the IDs from some of the resources would be required for the Terraform files for the frontend. 
-Output blocks can be used.  This output block defines an output variable and provides the information specified. In this case, [outputs](intTerraform/outputs.tf) can be used to output the IDs that can then be passed to the frontend Terraform files. 
+Output blocks can be used.  This output block defines an output variable and provides the information specified. In this case, [outputs](intTerraform/outputs.tf) can be used to output the IDs that can then be passed to the frontend Terraform files. To access the application, an output block with the variable called "alb_url" provides the URL for the ALB created in the script. This URL is created along with the creation of the application load balancer, and this is how the application is accessed.
 
-T**Terraform file to create the resources for frontend [ECS](FrontendTF/main.tf) and [ALB](FrontendTF/ALB.tf)**
+T**Terraform file to create the resources for frontend [ECS](FrontendTF/main.tf)**
 
-As some of the resources have already been created when creating the backend infrastructure, instead of recreating the resources, the IDs generated from the backend output block can be passed to the resource blocks in the frontend.  To access the application, an output block with the variable called "alb_url" provides the URL for the ALB created in the script. This URL is created along with the creation of the application load balancer, and this is how the application is accessed.
+As some of the resources have already been created when creating the backend infrastructure, instead of recreating the resources, the IDs and ARN generated from the backend output block can be passed to the resource blocks in the frontend.  
 
 ## Step 6: Jenkins
 
@@ -240,6 +240,10 @@ The application was launched with the DNS:
 4.  When running the Jenkins build for the frontend, it was creating resources that already existed.
 
    Debugging process:  reviewed the frontend dockerfiles, removed resource blocks that were already created, and used the IDs from the backend output blocks and used in the frontend resource blocks to reference existing resources
+
+5.  Launch Application, but frontend was not connecting to the backend:
+     Debugging process:  reviewed the VPC resource map to verify that the subnet the backend is hosted in is routed to the internet gateway, did research on the internet and ChatGPt, and reviewed terraform files.
+    Resolution:  Moved the creation of ALB resources to be created with the backend resources and uncommented `depends_on = [aws_internet_gateway.igw]`
 
 ## Application Stack
 
