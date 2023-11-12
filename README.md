@@ -13,17 +13,19 @@ Jorge Molina - System Administrator
 # Purpose
 
 Deploy E-Commerce Application in ECS Container.  Some of the tools used to deploy the application are:
-
+```
 -Jenkins to automate the CI/CD pipeline
 -Terraform was used to automate infrastructure provisioning
 -GitHub serves as the repository
 -Docker to build the image
 -ECS to containerize the application
+```
 
 To enhance team collaboration, some of the tools we use are:
-
+```
 -Jira to manage the project and tasks
 -Google Sheets to share information across the team
+```
 
 ## Step 1:  Setup for Collaboration
 
