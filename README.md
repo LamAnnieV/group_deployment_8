@@ -2,9 +2,7 @@
 
 November 5, 2023
 
-Group Name:
-
-Group Members:  
+Contributors:
 
 Annie V Lam - Project Manager
 
@@ -14,16 +12,40 @@ Jorge Molina - System Administrator
 
 # Purpose
 
-Deploy E-Commerce Application in ECS Container 
+Deploy E-Commerce Application in ECS Container.  Some of the tools used to deploy the application are:
 
-## Step  AWS Setup (Jorge)
-# AWS Setup
+-Jenkins to automate the CI/CD pipeline
+-Terraform was used to automate infrastructure provisioning
+-GitHub serves as the repository
+-Docker to build the image
+-ECS to containerize the application
 
-Since we are working in a group, I had to set up AWS user accounts for my team members to collaborate on the same servers. I created two user accounts, copying the same permissions from myself. This allows my team members to create and access EC2 instances.
+To enhance team collaboration, some of the tools we use are:
+
+-Jira to manage the project and tasks
+-Google Sheets to share information across the team
+
+## Step 1:  Setup for Collaboration
+
+**AWS Setup**
+
+Since we are working in a group, the System administrator had to set up AWS user accounts for my members to collaborate on the same servers. Two user accounts, copying the same permissions as the System administrator. This allows team members to create and access EC2 instances.
+
+**Collaboratorating in GitHub**
+
+Added team members as collaborators to the GitHub
+
+**Jira Board**
+
+A Jira Board was created to list last, assign tasks, and track progress
 
 ## Step  Diagram the VPC Infrastructure and the CI/CD Pipeline (Sameen)
 
 ![Deployment Diagram](Images/Deployment_Pipeline.png)
+
+Which one is the deployment Diagram?
+
+
 ![Deployment8 drawio (1)](https://github.com/LamAnnieV/group_deployment_8/assets/128739962/c43a03c9-3135-486c-b0bf-bd2b79719b2b)
 
 
