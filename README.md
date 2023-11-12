@@ -42,9 +42,9 @@ A Docker image is a template of an application with all the dependencies it need
 
 For this deployment, we need to create a [dockerfile](dockerfile) to build the image of the e-commerce application.  Please see the [GIT - docker file](Images/git.md) section to see how to test the dockerfile to see if it can build the image and if the image is deployable.
 
-## Step # Jenkinsfilev1  (All)
+## Step # Jenkinsfilev1  (Annie)
 
-## Step # Jenkinsfilev2  (All)
+## Step # Jenkinsfilev2  (Annie)
 
 ## Step # Terraform (Sameen)
 
