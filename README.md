@@ -144,7 +144,7 @@ aws_alb_listener - defines the configuration for accepting incoming traffic on a
 With the resources created for the backend from [vpc.tf](intTerraform/VPC.tf) and [main.tf](intTerraform/main.tf) the IDs from some of the resources would be required for the Terraform files for the frontend. 
 Output blocks can be used.  This output block defines an output variable and provides the information specified. In this case, [outputs](intTerraform/outputs.tf) can be used to output the IDs that can then be passed to the frontend Terraform files. To access the application, an output block with the variable called "alb_url" provides the URL for the ALB created in the script. This URL is created along with the creation of the application load balancer, and this is how the application is accessed.
 
-T**Terraform file to create the resources for frontend [ECS](FrontendTF/main.tf)**
+**Terraform file to create the resources for frontend [ECS](FrontendTF/main.tf)**
 
 As some of the resources have already been created when creating the backend infrastructure, instead of recreating the resources, the IDs and ARN generated from the backend output block can be passed to the resource blocks in the frontend.  
 
