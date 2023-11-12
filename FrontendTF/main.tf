@@ -69,6 +69,10 @@ resource "aws_ecs_service" "aws-ecs-service-FE" {
     security_groups  = ["sg-0e92788d7f4f1a19f"]                          #enter actual ID
   }
 
-
+  load_balancer {
+    target_group_arn = "arn:aws:elasticloadbalancing:us-east-1:104325197445:targetgroup/ecom-app-FE/4b68470a1cc9bbf5"                  #enter actual ID
+    container_name   = "ecom-containerFE"
+    container_port   = 3000
+  }
 
 }
