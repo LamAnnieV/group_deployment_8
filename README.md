@@ -68,17 +68,18 @@ git add <name_of_folder> #this is done for each folder that is added
 git add <name_of_file>  #this is done for each file that is added
 #make edits to files (Terraform files, Docker files, Jenkinfiles, package.json)
 git commit -a
+git push --set-upstream origin <branch_name>
 ```
 
 ## Step 4: Docker/Dockerfile
 
 ### be.Dockerfile:
 
-For this project, we created a Dockerfile for the backend containers in our ECS cluster. Once the Dockerfile was created and configured for our backend image, `docker build` was used to build the image. Following that, `docker image ls` was used to confirm that the image was successfully built. Upon verification, `docker image tag` was used with the old image ID and the new image name, incorporating the DockerHub username. Once the image was correctly named and built, it was pushed to the DockerHub repository using `docker push`. The backend image used the following [configuration](be.Dockerfile)
+For this project, we created a Dockerfile for the backend containers in our ECS cluster. Once the Dockerfile was created and configured for our backend image, `docker build` was used to build the image. Following that, `docker image ls` was used to confirm that the image was successfully built. Upon verification, `docker image tag` was used with the old image ID and the new image name, incorporating the DockerHub username. Once the image was correctly named and built, it was pushed to the DockerHub repository using `docker push`. The backend image used the following [configuration in the be.Dockerfile](be.Dockerfile)
 
 ### fe.Dockerfile:
 
-For this project, we created a Dockerfile for the frontend containers in our ECS cluster. Similar to the backend setup, after creating and configuring the Dockerfile for our frontend image, `docker build` was used to build the image and `docker image ls` to check its successful creation. After confirming the image build, `docker image tag` was utilized to assign a new name with the DockerHub username included. Subsequently, the image was pushed to the DockerHub repository using `docker push`. The frontend image used the following configuration](fe.Dockerfile).
+For this project, we created a Dockerfile for the frontend containers in our ECS cluster. Similar to the backend setup, after creating and configuring the Dockerfile for our frontend image, `docker build` was used to build the image and `docker image ls` to check its successful creation. After confirming the image build, `docker image tag` was utilized to assign a new name with the DockerHub username included. Subsequently, the image was pushed to the DockerHub repository using `docker push`. The frontend image used the following [configuration in the fe.Dockerfile](fe.Dockerfile).
 
 
 ## Step 5: Terraform
@@ -112,27 +113,38 @@ Amazon Elastic Container Service (ECS) is a managed container orchestration serv
 
 AWS Fargate is a technology that you can use with Amazon ECS to run containers without having to manage servers or clusters of Amazon EC2 instances. With Fargate, you no longer have to provision, configure, or scale clusters of virtual machines to run containers.
 
-Create the following resource group for [Elastic Container Service](intTerraform/main.tf):  
+**Resource Blocks:**
 
-```
-aws_ecs_cluster - for grouping of tasks or services
-aws_cloudwatch_log_group
-aws_ecs_task_definition - describes the container
-aws_ecs_service - is a fully managed opinionated container orchestration service that delivers the easiest way for organizations to build, deploy, and manage containerized applications at any scale on AWS
-```
+aws_ecs_cluster - A cluster is a group of servers that provides resources hosted on the respective cluster. ECS Cluster is an environment for any container projects that are hosted.
 
-#### Application Load Balancer (ALB) (Sameen)
+aws_cloudwatch_log_group - creates a CloudWatch Log Group in AWS, which will log and monitor AWS resources and applications
+
+aws_ecs_task_definition - defines the container configuration for the task. It specifies the container name, the Docker image to use, the logging configuration for the container, and the port mapping for the container.  It also defines that the task is running on Fargate. The memory and CPU settings specify the amount of memory and CPU units to be allocated to the task when it is running. The "execution_role_arn" and "task_role_arn" are the IAM roles used for the task's execution and task permissions. They define the AWS roles that provide the necessary permissions to run the task and access other AWS resources.
+
+aws_ecs_service - configures the ECS service with details such as the service name, cluster, task definition, launch type, scheduling strategy, desired count, network configuration, and load balancer configuration.  A major point to note is the scheduling strategy that specifies the scheduling strategy for the service, which, in this case, is set to "REPLICA" to maintain a specified number of instances of the task.  If a load balancer is also associated with the containers, this is where it will be referenced.
+
+
+#### Application Load Balancer (ALB)
 
 The purpose of an Application Load Balancer (ALB) is to evenly distribute incoming web traffic to multiple servers or instances to ensure that the application remains available, responsive, and efficient. It directs traffic to different servers to prevent overload on any single server. If one server is down, it can redirect traffic to the servers that are still up and running.  This helps improve the performance, availability, and reliability of web applications, making sure users can access them without interruption, even if some servers have issues.
 
+**Resource Blocks:**
+
+aws_lb_target_group - defines the AWS Application Load Balancer target group. It specifies the target group's name, port, protocol, target type, VPC ID, and health check settings. It references the ALB resource. The target groups are being set to the containers
+
+aws_alb" "e_commerce_app - configures an Application Load Balancer (ALB) on AWS. It sets the ALB's name, internal visibility, load balancer type, subnets, and security groups. It depends on the existence of an internet gateway.
+
+aws_alb_listener - defines the configuration for accepting incoming traffic on a specific port and protocol. It is responsible for "forwarding" this traffic to the designated target group. 
+
+This output block defines an output variable called "alb_url" that provides the URL for the ALB created in the script. This URL is created along with the creation of the application load balancer, and this is how the application is accessed.
+
+```
+
+
+Create the following resource group for [Elastic Container Service](intTerraform/main.tf):
+
 Create the following [Application Load Balancer](intTerraform/ALB.tf):  
 
-```
-aws_lb_target_group - defines the target group
-aws_alb" "e_commerce_app - load balancer
-aws_alb_listener - what port is the application load balancer listening on
-
-```
 
 ## Step # Jenkins (Annie)
 
