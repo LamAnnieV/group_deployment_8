@@ -39,17 +39,12 @@ Added team members as collaborators to the GitHub
 
 A Jira Board was created to list last, assign tasks, and track progress
 
-## Step  Diagram the VPC Infrastructure and the CI/CD Pipeline (Sameen)
-
-![Deployment Diagram](Images/Deployment_Pipeline.png)
-
-Which one is the deployment Diagram?
-
+## Step 2: Diagram the VPC Infrastructure and the CI/CD Pipeline
 
 ![Deployment8 drawio (1)](https://github.com/LamAnnieV/group_deployment_8/assets/128739962/c43a03c9-3135-486c-b0bf-bd2b79719b2b)
 
 
-## Step 2 GitHub/Git (Annie)
+## Step 3: GitHub/Git
 
 **Setup GitHub Repository for Jenkins Integration:**
 
@@ -61,29 +56,42 @@ In order for the EC2 instance, where Jenkins is installed, to access the reposit
 
 With three collaborators on this project, in order to minimize merge conflicts, each collaborator creates a branch and works off of that branch.  The merge to the main repo will be done in GitHub in the [project GitHub repository](https://github.com/LamAnnieV/group_deployment_8.git)
 
-## Step # Python Script (Jorge)
+```
+git clone https://github.com/LamAnnieV/group_deployment_8.git
+cd group_deployment_8
+git init
+git branch <branch_name>     #each contributor has his/her own branch
+git switch <branch_name
+#add folders
+git add <name_of_folder> #this is done for each folder that is added
+#add files
+git add <name_of_file>  #this is done for each file that is added
+#make edits to files (Terraform files, Docker files, Jenkinfiles, package.json)
+git commit -a
+```
 
-## Step # Docker/Dockerfile  (Jorge)
-# Dockerfile.BE:
+## Step 4: Docker/Dockerfile
 
-For this project, we created a Dockerfile for the backend containers in our ECS cluster. Once the Dockerfile was created and configured for our backend image, I used `docker build` to build the image. Following that, I used `docker image ls` to confirm that the image was successfully built. Upon verification, I used `docker image tag` with the old image ID and the new image name, incorporating my DockerHub username. Once the image was correctly named and built, I pushed it to my DockerHub repository using `docker push`. The backend image used the following configurations:
+### be.Dockerfile:
 
-# Dockerfile.FE:
+For this project, we created a Dockerfile for the backend containers in our ECS cluster. Once the Dockerfile was created and configured for our backend image, `docker build` was used to build the image. Following that, `docker image ls` was used to confirm that the image was successfully built. Upon verification, `docker image tag` was used with the old image ID and the new image name, incorporating the DockerHub username. Once the image was correctly named and built, it was pushed to the DockerHub repository using `docker push`. The backend image used the following [configuration](be.Dockerfile)
 
-For this project, we created a Dockerfile for the frontend containers in our ECS cluster. Similar to the backend setup, after creating and configuring the Dockerfile for our frontend image, I used `docker build` to build the image and `docker image ls` to check its successful creation. After confirming the image build, I utilized `docker image tag` to assign a new name with my DockerHub username included. Subsequently, I pushed the image to my DockerHub repository using `docker push`. The frontend image used the following configration:  .
+### fe.Dockerfile:
+
+For this project, we created a Dockerfile for the frontend containers in our ECS cluster. Similar to the backend setup, after creating and configuring the Dockerfile for our frontend image, `docker build` was used to build the image and `docker image ls` to check its successful creation. After confirming the image build, `docker image tag` was utilized to assign a new name with the DockerHub username included. Subsequently, the image was pushed to the DockerHub repository using `docker push`. The frontend image used the following configuration](fe.Dockerfile).
 
 
-## Step # Terraform (Sameen)
+## Step 5: Terraform
 
 Terraform is a tool that helps you create and manage your infrastructure. It allows you to define the desired state of your infrastructure in a configuration file, and then Terraform takes care of provisioning and managing the resources to match that configuration. This makes it easier to automate and scale your infrastructure and ensures that it remains consistent and predictable.
 
-### Jenkins Agent Infrastructure (Sameen)
+### Jenkins Agent Infrastructure
 
-Use Terraform to spin up the [Jenkins Agent Infrastructure](jenkinsTerraform/main.tf) to include the installs needed for the [Jenkins instance](jenkinsTerraform/installs1.sh), the install needed for the [Jenkins Docker agent instance](jenkinsTerraform/installs2.sh), and the install needed for the [Jenkins Terraform agent instance](jenkinsTerraform/installs3.sh).
+Use Terraform to spin up the [Jenkins Agent Infrastructure](d8jenkins/main.tf) to include the installs needed for the [Jenkins instance](d8jenkins/jenkins.sh), the install needed for the [Jenkins Docker agent instance](d8jenkins/docker.sh), and the install needed for the [Jenkins Terraform agent instance](d8jenkins/terraform.sh).
 
-**Use Jenkins Terraform Agent to execute the Terraform scripts to create the E-Commerce Application Infrastructure and Deploy the application on ECS with Application Load Balancer**
+**Use Jenkins Terraform Agent to execute the Terraform scripts to create the E-Commerce Application Infrastructure and Deploy the backend and the front end of the application on ECS with Application Load Balancer**
 
-#### E-Commerce Application Infrastructure (Semeen)
+#### E-Commerce VPC Infrastructure
 
 Create the following [e-commerce application infrastructure](intTerraform/vpc.tf):  
 
@@ -98,7 +106,7 @@ Security Group Ports: 8000, 3000, 80
 1 ALB
 ```
 
-#### Elastic Container Service (ECS) (Sameen)
+#### Elastic Container Service (ECS)
 
 Amazon Elastic Container Service (ECS) is a managed container orchestration service.  It is designed to simplify the deployment, management, and scaling of containerized applications using containers. The primary purpose of ECS with Docker images is to make it easier to run and manage containers in a scalable and reliable manner.
 
