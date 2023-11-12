@@ -127,19 +127,20 @@ Instructions on how to install the [Docker Pipeline](https://github.com/LamAnnie
 
 This application has two tiers, the frontend is the web layer and the backend are application and database layer.  To connect the frontend to the backend, the backend needs to be created first so that the private IP address of the backend task can be passed to the file package.json:
 
-## Jenkins Build for E-Commerce Application Backend (JenkinsfileBE)**  (Annie)
+**Jenkins Build for E-Commerce Application Backend (JenkinsfileBE)**  (Annie)
 
 Jenkins Build:  In Jenkins create a build "Group_Deploy_8_JenkinsBE" to run the file JenkinsfileBE for the E-Commerce application from [GitHub Repository](https://github.com/LamAnnieV/group_deployment_8.git) and run the build.  This build consists of the following stages:
 
-**Docker "Build"** - this stage builds the backend image from the be.Dockerfile file
+```
+Docker "Build" - this stage builds the backend image from the be.Dockerfile file
 
-**"Login and Push"** - this stage login Docker Hub with the credentials saved in the Jenkins Global Credentials
+"Login and Push" - this stage login Docker Hub with the credentials saved in the Jenkins Global Credentials
 
-**Terraform "Init"** - this stage passes the AWS Access Key and Secret Key from the Jenkins Global Credentials, goes into the directory where the terraform files for the backend are located, then initializes the working directory
+Terraform "Init" - this stage passes the AWS Access Key and Secret Key from the Jenkins Global Credentials, goes into the directory where the terraform files for the backend are located, then initializes the working directory
 
-**Terraform "Plan"** - this stage in addition to the first and second part of the stage above, also, creates an execution plan
+Terraform "Plan" - this stage in addition to the first and second part of the stage above, also, creates an execution plan
 
-**Terraform "Apply"** - this stage in addition to the first and second part of the stage above, also, executes the actions proposed in a terraform plan
+Terraform "Apply" - this stage in addition to the first and second part of the stage above, also, executes the actions proposed in a terraform plan
 
 ![image](Images/Jenkins_BE_Build.png)
 
@@ -147,7 +148,7 @@ Jenkins Build:  In Jenkins create a build "Group_Deploy_8_JenkinsBE" to run the 
 
 ![image](Images/proxy.png)
 
-## Jenkins Build for E-Commerce Application Frontend (JenkinsfileFE)
+**Jenkins Build for E-Commerce Application Frontend (JenkinsfileFE)**
 
 The stages for the frontend is the same as the backend, the differences are the dockerfile for the frontend creates the image for the frontend, and the terraform files
 
