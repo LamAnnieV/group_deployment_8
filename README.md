@@ -50,9 +50,7 @@ A Jira Board was created to list last, assign tasks, and track progress
 
 GitHub serves as the repository from which Jenkins retrieves files to build, test, and build the infrastructure for the e-commerce application and deploy the e-commerce application.  [GitHub repository](https://github.com/LamAnnieV/group_deployment_8.git)
 
-In order for the EC2 instance, where Jenkins is installed, to access the repository, you need to generate a token from GitHub and then provide it to the EC2 instance.
-
-[Generate GitHub Token](https://github.com/LamAnnieV/GitHub/blob/main/Generate_GitHub_Token.md)
+In order for the EC2 instance, where Jenkins is installed, to access the repository, you need to generate a token from GitHub and then provide it to the EC2 instance.[Generate GitHub Token](https://github.com/LamAnnieV/GitHub/blob/main/Generate_GitHub_Token.md)
 
 With three collaborators on this project, in order to minimize merge conflicts, each collaborator creates a branch and works off of that branch.  The merge to the main repo will be done in GitHub in the [project GitHub repository](https://github.com/LamAnnieV/group_deployment_8.git)
 
@@ -136,16 +134,19 @@ aws_alb" "e_commerce_app - configures an Application Load Balancer (ALB) on AWS.
 
 aws_alb_listener - defines the configuration for accepting incoming traffic on a specific port and protocol. It is responsible for "forwarding" this traffic to the designated target group. 
 
-This output block defines an output variable called "alb_url" that provides the URL for the ALB created in the script. This URL is created along with the creation of the application load balancer, and this is how the application is accessed.
 
+T**Terraform file to create the resources for backend ECS:   [main.tf](intTerraform/main.tf)**
 
+**Output Block:**
 
-Create the following resource group for [Elastic Container Service](intTerraform/main.tf):
+With the resources created for the backend from [vpc.tf](intTerraform/VPC.tf) and [main.tf](intTerraform/main.tf) the IDs from some of the resources would be required for the Terraform files for the frontend. 
+Output blocks can be used.  This output block defines an output variable and provides the information specified. In this case, [outputs](intTerraform/outputs.tf) can be used to output the IDs that can then be passed to the frontend Terraform files. 
 
-Create the following [Application Load Balancer](intTerraform/ALB.tf):  
+T**Terraform file to create the resources for frontend [ECS](FrontendTF/main.tf) and [ALB](FrontendTF/ALB.tf)**
 
+As some of the resources have already been created when creating the backend infrastructure, instead of recreating the resources, the IDs generated from the backend output block can be passed to the resource blocks in the frontend.  To access the application, an output block with the variable called "alb_url" provides the URL for the ALB created in the script. This URL is created along with the creation of the application load balancer, and this is how the application is accessed.
 
-## Step # Jenkins (Annie)
+## Step 6: Jenkins
 
 ### Jenkins
 
@@ -198,7 +199,7 @@ Terraform "Apply" - this stage in addition to the first and second part of the s
 
 **Jenkins Build for E-Commerce Application Frontend (JenkinsfileFE)**
 
-The stages for the frontend is the same as the backend, the differences are the dockerfile for the frontend creates the image for the frontend, and the terraform files
+The stages for the frontend are the same as the backend, the differences are the dockerfile for the frontend creates the image for the frontend, and the terraform files
 
 ![image](Images/Jenkins_FE_Build.png)
 
@@ -220,26 +221,46 @@ Tasks
 
 **Results:**
 
-![Image](Images/Jenkins.png)
-
 The application was launched with the DNS:
 
 ![Images](Images/Launched_website.png)
 
-## Issue(s) (All)
+## Issue(s)/Debugging/Resolution
 
-1.  
+1.  Running out of resources in our Jenkins agent hosting Dockers - had to increase the volume
+  
+2.  The Jenkins build was failing at the "Build" stage - consolidated defining the Docker Hub credentials variable, logging into dockers, and pushing the image to Docker Hub into one stage
 
-## Conclusion (All)
+    Debugging process: Ran sudo usermod -aG docker and sudo chmod 777 /var/run/docker.sock after installation and was still stuck in the first stage Since the first action item of the Jenkinsfile is to establish environmental variables for Docker, it is highly likely that might be an issue. Switched to using "withCredentials and having the login and the action item in one stage, and tested to see if that would work with Docker. Tested and was able to pass all the stages related to Dockers.
+    
+3.  The backend task was not successfully provisioning
+   
+    Debugging process:  manually ran the build and see if it was successful. The issue was the be.Dockerfile was missing a closing bracket
+    
+4.  When running the Jenkins build for the frontend, it was creating resources that already existed.
 
-What is the application stack of this application?
+   Debugging process:  reviewed the frontend dockerfiles, removed resource blocks that were already created, and used the IDs from the backend output blocks and used in the frontend resource blocks to reference existing resources
 
-Is the backend an API server?
+## Application Stack
 
+This application is two-tiered.  One tier is for the web layer and the other tier is for the application and data layer
 
-## Area(s) for Optimization (All)
+**Frontend**  
 
+Web Layer Stack: React
 
+**Backend serves as an API server**
+
+Application Layer Stack: Python Django
+
+Data Layer Stack: SQLite3
+
+## Area(s) for Optimization
+
+1.  Manual Process:  The IDs from the Terraform backend output were manually entered in the resource blocks in the front end.  Use AWS EKS to eliminate this manual process
+2.  Security:  Both the frontend and the backend of the application are hosted in public subnets.  Move the frontend and backend to private subnets and add NAT gateway
+3.  Single Point of Failure:  There is only one backend, which consists of both the application and the database.  Increase the backend and put in AWS Relational Database Service (RDS) to sync the data from multiple SQLite3 databases
+   
 
 Note:  ChatGPT was used to enhance the quality and clarity of this documentation
   
