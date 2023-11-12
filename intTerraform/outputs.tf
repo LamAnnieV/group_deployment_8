@@ -27,7 +27,7 @@ output "ingress_sg_FE_id" {
   value = aws_security_group.ingress_app_FE.id
 }
 
-output "aws_lb_target_group.ecom-app-FE.arn" {
+output "aws_lb_target_group_ecom-app-FE_arn" {
   value = aws_lb_target_group.ecom-app-FE.arn
 }
 
