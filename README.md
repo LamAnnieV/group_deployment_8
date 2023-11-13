@@ -4,7 +4,7 @@ November 5, 2023
 
 Contributors:
 
- V Lam - Project Manager
+Annie V Lam - Project Manager
 
 Sameen Khan - Chief Architect
 
