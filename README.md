@@ -70,6 +70,10 @@ git commit -a
 git push --set-upstream origin <branch_name>
 ```
 
+## Python Script:
+This python script was created as a method of automation. This script was meant for everyone as a team to use to push their work into the github repository. To get started I installed gitpython, it is a python library that allows us to interact with git repositories. Next steps for this script would be adding error handling to check for any sensitive informations such as AWS access and secret keys.
+
+
 ## Step 4: Docker/Dockerfile
 
 ### be.Dockerfile:
