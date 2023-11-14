@@ -43,20 +43,22 @@ A Jira Board was created to list last, assign tasks, and track progress
 
 ## Step 2: Diagram the VPC Infrastructure and the CI/CD Pipeline
 
-![Deployment8 drawio (2)](https://github.com/LamVAnnie/group_deployment_8/assets/128739962/74075ac9-1797-45b6-b4c8-bb9f8e745f20)
+![Deployment8 drawio (2)](https://github.com/LamAnnieV/group_deployment_8/assets/128739962/74075ac9-1797-45b6-b4c8-bb9f8e745f20)
 
 ## Step 3: GitHub/Git
 
 **Setup GitHub Repository for Jenkins Integration:**
 
-GitHub serves as the repository from which Jenkins retrieves files to build, test, and build the infrastructure for the e-commerce application and deploy the e-commerce application.  [GitHub repository](https://github.com/LamVAnnie/group_deployment_8.git)
+GitHub serves as the repository from which Jenkins retrieves files to build, test, and build the infrastructure for the e-commerce application and deploy the e-commerce application.  [GitHub repository](https://github.com/LamAnnieV/group_deployment_8.git)
 
-In order for the EC2 instance, where Jenkins is installed, to access the repository, you need to generate a token from GitHub and then provide it to the EC2 instance.[Generate GitHub Token](https://github.com/LamVAnnie/GitHub/blob/main/Generate_GitHub_Token.md)
+In order for the EC2 instance, where Jenkins is installed, to access the repository, you need to generate a token from GitHub and then provide it to the EC2 instance.[Generate GitHub Token](https://github.com/LamAnnieV/GitHub/blob/main/Generate_GitHub_Token.md)
 
-With three collaborators on this project, in order to minimize merge conflicts, each collaborator creates a branch and works off of that branch.  The merge to the main repo will be done in GitHub in the [project GitHub repository](https://github.com/LamVAnnie/group_deployment_8.git)
+With three collaborators on this project, in order to minimize merge conflicts, each collaborator creates a branch and works off of that branch.  The merge to the main repo will be done in GitHub in the [project GitHub repository](https://github.com/LamAnnieV/group_deployment_8.git)
+
+                                                              https://github.com/LamAnnieV/group_deployment_8.git
 
 ```
-git clone https://github.com/LamVAnnie/group_deployment_8.git
+git clone https://github.com/LamAnnieV/group_deployment_8.git
 cd group_deployment_8
 git init
 git branch <branch_name>     #each contributor has his/her own branch
@@ -159,23 +161,23 @@ Jenkins automates the Build, Test, and Deploy the E-Commerce Application.  To us
 
 **Setup Jenkins and Jenkins nodes**
 
-[Create](https://github.com/LamVAnnie/Create_EC2_Instance/blob/main/Create_Key_Pair.md) a Key Pair
+[Create](https://github.com/LamAnnieV/Create_EC2_Instance/blob/main/Create_Key_Pair.md) a Key Pair
 
 Configure Jenkins
 
-Instructions on how to configure the [Jenkin node](https://github.com/LamVAnnie/Jenkins/blob/main/jenkins_node.md)
+Instructions on how to configure the [Jenkin node](https://github.com/LamAnnieV/Jenkins/blob/main/jenkins_node.md)
 
 ![images](Images/Jenkin_Nodes.png)
 
-Instructions on how to configure [AWS access and secret keys](https://github.com/LamVAnnie/Jenkins/blob/main/AWS_Access_Keys), that the Jenkin node will need to execute Terraform scripts
+Instructions on how to configure [AWS access and secret keys](https://github.com/LamAnnieV/Jenkins/blob/main/AWS_Access_Keys), that the Jenkin node will need to execute Terraform scripts
 
-Instructions on how to configure [Docker credentials](https://github.com/LamVAnnie/Jenkins/blob/main/docker_credentials.md), to push the docker image to Docker Hub
+Instructions on how to configure [Docker credentials](https://github.com/LamAnnieV/Jenkins/blob/main/docker_credentials.md), to push the docker image to Docker Hub
 
 ![image](Images/Jenkins_Global_Credentials.png)
 
-Instructions on how to install the [Pipleline Keep Running Step](https://github.com/LamVAnnie/Jenkins/blob/main/Install_Pipeline_Keep_Running_Step.md)
+Instructions on how to install the [Pipleline Keep Running Step](https://github.com/LamAnnieV/Jenkins/blob/main/Install_Pipeline_Keep_Running_Step.md)
 
-Instructions on how to install the [Docker Pipeline](https://github.com/LamVAnnie/Jenkins/blob/main/Install_Docker_Pipeline_Plugin.md)
+Instructions on how to install the [Docker Pipeline](https://github.com/LamAnnieV/Jenkins/blob/main/Install_Docker_Pipeline_Plugin.md)
 
 
 ### Jenkins Build for E-Commerce Backend and Frontend Application
@@ -184,7 +186,7 @@ This application has two tiers, the frontend is the web layer and the backend ar
 
 **Jenkins Build for E-Commerce Application Backend (JenkinsfileBE)**
 
-Jenkins Build:  In Jenkins create a build "Group_Deploy_8_JenkinsBE" to run the file JenkinsfileBE for the E-Commerce application from [GitHub Repository](https://github.com/LamVAnnie/group_deployment_8.git) and run the build.  This build consists of the following stages:
+Jenkins Build:  In Jenkins create a build "Group_Deploy_8_JenkinsBE" to run the file JenkinsfileBE for the E-Commerce application from [GitHub Repository](https://github.com/LamAnnieV/group_deployment_8.git) and run the build.  This build consists of the following stages:
 
 Docker "Build" - this stage builds the backend image from the be.Dockerfile file
 
